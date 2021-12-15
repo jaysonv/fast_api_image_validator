@@ -1,8 +1,6 @@
 # fast_api_image_validator
 
-# fastapi-example [![CircleCI](https://circleci.com/gh/marciovrl/fastapi-example.svg?style=svg)](https://circleci.com/gh/marciovrl/fastapi-example)
-
-A simple example of using Fast API in Python.
+An image validator using FastAPI.
 
 ## Preconditions:
 
@@ -11,7 +9,7 @@ A simple example of using Fast API in Python.
 ## Clone the project
 
 ```
-git clone https://github.com/marciovrl/fastapi-example.git
+git clone https://github.com/k-zehnder/fast_api_image_validator
 ```
 
 ## Run local
