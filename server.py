@@ -11,7 +11,7 @@ import sys
 import logging
 
 
-from tmp_custom_validator_classes import SimilarityAnalyzer, BlackWhiteThresholdAnalyzer
+from custom_validator_classes import SimilarityAnalyzer, BlackWhiteThresholdAnalyzer
 
 validators_dictionary = {
     "SimilarityAnalyzer" : SimilarityAnalyzer,
@@ -39,9 +39,13 @@ async def foo(upload_file: UploadFile = File(...), model: Json[TestModel] = Form
             fh.write(contents)
             
             # predicted_class = image_classifier.predict(image)
-            validator_key = model.validators[0]
-            validity_object = validators_dictionary[validator_key]()
-            isValidImage = validity_object.isValidImage(image)
+            results = {}
+            for validator_key in model.validators:
+                validity_object = validators_dictionary[validator_key]()
+                results[f"{validator_key}"] = validity_object.isValidImage(image)
+            # validator_key = model.validators[0]
+            # validity_object = validators_dictionary[validator_key]()
+            # isValidImage = validity_object.isValidImage(image)
             
             # log to console
             #logging.info(f"Is valid?: {isValid}")
@@ -50,7 +54,7 @@ async def foo(upload_file: UploadFile = File(...), model: Json[TestModel] = Form
             return {
                 "filename": upload_file.filename, 
                 "contentype": upload_file.content_type,
-                "isValidImage" : isValidImage
+                "results" : results
             }
     except Exception as error:
         logging.exception(error)
