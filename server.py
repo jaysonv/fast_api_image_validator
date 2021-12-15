@@ -32,7 +32,7 @@ app = FastAPI()
 @app.post("/validate")
 async def validate(upload_file: UploadFile = File(...), model: Json[TestModel] = Form(...)):
     try:
-        filename = model.username + ".png"
+        filename = "images/" + model.username + ".png"
         with open(filename, "wb") as fh:
             contents = await upload_file.read()
             fh.write(contents)
