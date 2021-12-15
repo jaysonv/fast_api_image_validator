@@ -5,7 +5,7 @@ import requests
 
 HERE = Path(__file__).parent.absolute()
 
-with open(HERE / "/home/batman/Desktop/py/automate_boring_stuff/fapi_test/kevin.png", "rb") as fh:
+with open(HERE / "/home/batman/Desktop/fast_api_image_validator/kevin.png", "rb") as fh:
     url = "http://localhost:8000/validate"
     files = {"upload_file": fh}
     # values = {"foo": "hello", "bar": 123, "meta_config": {"prop1": "hello there", "prop2": ["general", "kenobi", 1]}}
