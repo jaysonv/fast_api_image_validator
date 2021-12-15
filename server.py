@@ -1,7 +1,7 @@
 from fastapi import FastAPI, Form, File, UploadFile, HTTPException
 import uvicorn
 from pydantic import BaseModel, Json, Field
-from typing import Type, List
+from typing import Type, List, Dict
 import cv2
 import logging
 
@@ -18,10 +18,13 @@ validators_dictionary = {
     "BlackWhiteThresholdAnalyzer" : BlackWhiteThresholdAnalyzer
 }
 
-class TestModelResponse(BaseModel):
-    pass
+class ImageOut(BaseModel):
+    filename: str
+    contentype: str
+    username: str
+    results: Dict
 
-class TestModel(BaseModel):
+class ImageIn(BaseModel):
     username: str
     validators: List[str]
     threshold: float = Field(default=.1, description="The threshold")
@@ -29,10 +32,10 @@ class TestModel(BaseModel):
 
 app = FastAPI()
 
-@app.post("/validate")
-async def validate(upload_file: UploadFile = File(...), model: Json[TestModel] = Form(...)):
+@app.post("/validate", response_model=ImageOut)
+async def validate(upload_file: UploadFile = File(...), model: Json[ImageIn] = Form(...)):
     try:
-        filename = "images/" + model.username + ".png"
+        filename = upload_file.filename + model.username + ".png"
         with open(filename, "wb") as fh:
             contents = await upload_file.read()
             fh.write(contents)
@@ -44,6 +47,7 @@ async def validate(upload_file: UploadFile = File(...), model: Json[TestModel] =
             validity_object = validators_dictionary[validator_key]()
             results[f"{validator_key}"] = validity_object.isValidImage(image)
         
+        print(results)
         return {
             "filename": upload_file.filename,
             "contentype": upload_file.content_type,
