@@ -30,32 +30,26 @@ class TestModel(BaseModel):
 app = FastAPI()
 
 @app.post("/validate")
-async def foo(upload_file: UploadFile = File(...), model: Json[TestModel] = Form(...)):
-    filename = model.username + ".png"
+async def validate(upload_file: UploadFile = File(...), model: Json[TestModel] = Form(...)):
     try:
+        filename = model.username + ".png"
         with open(filename, "wb") as fh:
             contents = await upload_file.read()
-            image = Image.open(io.BytesIO(contents)).convert('RGB')
             fh.write(contents)
+            image = Image.open(io.BytesIO(contents)).convert('RGB')
             
-            # predicted_class = image_classifier.predict(image)
-            results = {}
-            for validator_key in model.validators:
-                validity_object = validators_dictionary[validator_key]()
-                results[f"{validator_key}"] = validity_object.isValidImage(image)
-            # validator_key = model.validators[0]
-            # validity_object = validators_dictionary[validator_key]()
-            # isValidImage = validity_object.isValidImage(image)
-            
-            # log to console
-            #logging.info(f"Is valid?: {isValid}")
-            
-            # return json object to client (aka response.conent)
-            return {
-                "filename": upload_file.filename, 
-                "contentype": upload_file.content_type,
-                "results" : results
-            }
+        # predicted_class = image_classifier.predict(image)
+        results = {}
+        for validator_key in model.validators:
+            validity_object = validators_dictionary[validator_key]()
+            results[f"{validator_key}"] = validity_object.isValidImage(image)
+        
+        return {
+            "filename": upload_file.filename,
+            "contentype": upload_file.content_type,
+            "username" : model.username, 
+            "results" : results
+        }
     except Exception as error:
         logging.exception(error)
         e = sys.exc_info()[1]
