@@ -1,17 +1,15 @@
-from fastapi import FastAPI, Form, File, UploadFile, HTTPException
-import uvicorn
-from pydantic import BaseModel, Json, Field
-from typing import Type, List, Dict
-import cv2
-import logging
-
-from PIL import Image
 import io
 import sys
-import logging
+import uvicorn
+from fastapi import FastAPI, Form, File, UploadFile, HTTPException
 
+from pydantic import BaseModel, Json, Field
+from typing import Type, List, Dict
+from PIL import Image
 
+# import your image validator classes
 from custom_validator_classes import SimilarityAnalyzer, BlackWhiteThresholdAnalyzer
+
 
 validators_dictionary = {
     "SimilarityAnalyzer" : SimilarityAnalyzer,
@@ -20,7 +18,6 @@ validators_dictionary = {
 
 class ImageOut(BaseModel):
     filename: str
-    contentype: str
     username: str
     results: Dict
 
@@ -47,10 +44,8 @@ async def validate(upload_file: UploadFile = File(...), model: Json[ImageIn] = F
             validity_object = validators_dictionary[validator_key]()
             results[f"{validator_key}"] = validity_object.isValidImage(image)
         
-        print(results)
         return {
             "filename": upload_file.filename,
-            "contentype": upload_file.content_type,
             "username" : model.username, 
             "results" : results
         }
