@@ -1,4 +1,5 @@
 import io
+import os
 import sys
 import logging
 import uvicorn
@@ -35,7 +36,7 @@ app = FastAPI()
 @app.post("/validate", response_model=ImageFormOut)
 async def validate(upload_file: UploadFile = File(...), model: Json[ImageFormIn] = Form(...)):
     try:
-        filename = upload_file.filename + ".png"
+        filename = os.path.join("images", model.username + "_" + upload_file.filename)
         with open(filename, "wb") as fh:
             contents = await upload_file.read()
             fh.write(contents)

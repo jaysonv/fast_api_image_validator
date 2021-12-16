@@ -60,7 +60,7 @@ with open(HERE / "/home/batman/Desktop/fast_api_image_validator/kevin.png", "rb"
 http://127.0.0.1:8000/validate
 ```
 
-## POST to 'http://127.0.0.1:8000/validate' using Curl
+## POST to endpoint 'http://127.0.0.1:8000/validate' using Curl
 
 ```
 curl -X 'POST' \
