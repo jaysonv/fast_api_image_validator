@@ -35,7 +35,7 @@ pytest app/test.py
 http://127.0.0.1:8000/docs
 ```
 
-## POST endpoint
+## POST to endpoint 'http://127.0.0.1:8000/validate' using requests module
 
 ```
 import json
@@ -60,7 +60,7 @@ with open(HERE / "/home/batman/Desktop/fast_api_image_validator/kevin.png", "rb"
 http://127.0.0.1:8000/validate
 ```
 
-## POST to 'http://127.0.0.1:8000/validate' with Curl
+## POST to 'http://127.0.0.1:8000/validate' using Curl
 
 ```
 curl -X 'POST' \
