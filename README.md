@@ -52,25 +52,28 @@ curl -X 'POST' \
   'http://127.0.0.1:8000/validate' \
   -H 'accept: application/json' \
   -H 'Content-Type: multipart/form-data' \
-  -F 'upload_file=@docs.png;type=image/png' \
+  -F 'upload_file=@Screenshot from 2021-12-05 07-40-46.png;type=image/png' \
   -F 'model={
-  "username": "z1",
+  "username": "t1",
   "validators": [
-    "BlackWhiteThresholdAnalyzer", "SimilarityAnalyzer"
+    "SimilarityAnalyzer",
+    "BlackWhiteThresholdAnalyzer"
   ],
-  "threshold": 0.1
+  "config": {
+    "threshold": 0.1
+  }
 }'
 ```
 
-## Example Response
+## Example Response Body
 
 ```
 {
-  "filename": "docs.png",
-  "username": "user1234",
+  "filename": "Screenshot from 2021-12-05 07-40-46.png",
+  "username": "t1",
   "results": {
-    "BlackWhiteThresholdAnalyzer": true,
-    "SimilarityAnalyzer": true
+    "SimilarityAnalyzer": true,
+    "BlackWhiteThresholdAnalyzer": true
   }
 }
 ```
