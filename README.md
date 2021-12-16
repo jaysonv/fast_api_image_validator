@@ -39,13 +39,13 @@ pytest app/test.py
 http://127.0.0.1:8000/docs
 ```
 
-## Validate endpoint
+## POST endpoint
 
 ```
 http://127.0.0.1:8000/validate
 ```
 
-## Use /validate API endpoint with Curl
+## POST to 'http://127.0.0.1:8000/validate' with Curl
 
 ```
 curl -X 'POST' \
