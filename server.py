@@ -1,5 +1,6 @@
 import io
 import sys
+import logging
 import uvicorn
 from fastapi import FastAPI, Form, File, UploadFile, HTTPException
 
@@ -16,23 +17,25 @@ validators_dictionary = {
     "BlackWhiteThresholdAnalyzer" : BlackWhiteThresholdAnalyzer
 }
 
-class ImageOut(BaseModel):
+class Config(BaseModel):
+    threshold: float = Field(default=.1, description="The threshold")
+
+class ImageFormOut(BaseModel):
     filename: str
     username: str
     results: Dict
 
-class ImageIn(BaseModel):
+class ImageFormIn(BaseModel):
     username: str
-    validators: List[str]
-    threshold: float = Field(default=.1, description="The threshold")
-    
+    validators: List[str] = ["SimilarityAnalyzer", "BlackWhiteThresholdAnalyzer"]
+    config: Config
 
 app = FastAPI()
 
-@app.post("/validate", response_model=ImageOut)
-async def validate(upload_file: UploadFile = File(...), model: Json[ImageIn] = Form(...)):
+@app.post("/validate", response_model=ImageFormOut)
+async def validate(upload_file: UploadFile = File(...), model: Json[ImageFormIn] = Form(...)):
     try:
-        filename = upload_file.filename + model.username + ".png"
+        filename = upload_file.filename + ".png"
         with open(filename, "wb") as fh:
             contents = await upload_file.read()
             fh.write(contents)
