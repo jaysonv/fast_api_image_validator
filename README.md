@@ -42,6 +42,10 @@ http://127.0.0.1:8000/docs
 ## POST endpoint
 
 ```
+import json
+from pathlib import Path
+import requests
+
 HERE = Path(__file__).parent.absolute()
 
 with open(HERE / "/home/batman/Desktop/fast_api_image_validator/kevin.png", "rb") as fh:
