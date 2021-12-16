@@ -2,10 +2,6 @@
 
 An image validator using FastAPI.
 
-## Preconditions:
-
-- Python 3
-
 ## Clone the project
 
 ```
@@ -26,7 +22,7 @@ pip install -r requirements.txt
 uvicorn server:app --reload
 ```
 
-### Run test
+### Run test (*)
 
 ```
 pytest app/test.py
