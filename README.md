@@ -39,12 +39,6 @@ pytest app/test.py
 http://127.0.0.1:8000/docs
 ```
 
-### Run server
-
-```
-uvicorn server:app --reload
-```
-
 ## Validate endpoint
 
 ```
