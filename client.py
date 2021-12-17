@@ -8,7 +8,7 @@ import requests
 
 HERE = Path(__file__).parent.absolute()
 
-with open(HERE / "/home/batman/Desktop/fast_api_image_validator/images/demo_images.png", "rb") as fh:
+with open(HERE / "/home/batman/Desktop/fast_api_image_validator/images/docs.png", "rb") as fh:
     url = "http://localhost:8000/validate"
     files = {"upload_file": fh}
     values = {
