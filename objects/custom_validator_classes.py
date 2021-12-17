@@ -41,5 +41,5 @@ class ValidatorObjectAggregator:
     
 if __name__ == "__main__":
     val_objects = ["SimilarityAnalyzer", "BlackWhiteThresholdAnalyzer"]
-    vao = ValidatorObjectAggregator(*val_objects)
-    print(vao)
+    aggregator = ValidatorObjectAggregator(*val_objects)
+    print(aggregator)
