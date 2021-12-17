@@ -3,9 +3,6 @@ from pathlib import Path
 
 import requests
 
-# see :
-# https://github.com/tiangolo/fastapi/issues/2387
-
 HERE = Path(__file__).parent.absolute()
 
 with open(HERE / "/home/batman/Desktop/fast_api_image_validator/downloaded_images/qantas-747.jpg", "rb") as fh:
