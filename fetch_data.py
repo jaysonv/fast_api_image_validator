@@ -30,13 +30,13 @@ if __name__ == "__main__":
     scraper = GoogleImageScraper(**config)
     
     # fetch and download images to disk
-    img_urls = scraper.fetch_image_urls("dog", 20, 1)
+    img_urls = scraper.fetch_image_urls("boeing 747", 10, 1)
     for url in img_urls:
         scraper.persist_one_image(url)
     
     # fetch and persist images to output path
     downloaded_imgs = scraper.load_images_from_folder()
-    print(downloaded_imgs)
+    #print(downloaded_imgs)
     print(type(downloaded_imgs[0]))
     print(len(downloaded_imgs))
     

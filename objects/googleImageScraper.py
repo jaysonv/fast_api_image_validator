@@ -79,7 +79,7 @@ class GoogleImageScraper:
 
     def persist_one_image(self, url: str) -> None:
         """
-        Downloads a file given an URL and puts it in the folder `self.output_path`
+        Downloads a file given a URL string and puts it in the folder `self.output_path`
         """
         # if path doesn't exist, make that path dir
         if not os.path.isdir(self.output_path):
@@ -101,44 +101,8 @@ class GoogleImageScraper:
                 f.write(data)
                 # update the progress bar manually
                 progress.update(len(data))
-                
-    def fetch_and_download(self, urls: List[str]) -> None:
-        img_urls = self.fetch_image_urls("cat", 20, 1)
-        for url in img_urls:
-            scraper.persist_one_image(url)
             
     def __str__(self):
         return str(self.out)
         
-    
-if __name__ == "__main__":
-    # hard code configs
-    config = {
-        "output_path" : "/home/batman/Desktop/fast_api_image_validator/downloaded_images",
-        "chrome_driver_path" : "/home/batman/Desktop/fast_api_image_validator/chromedriver",
-        "headless" : True
-    }
-
-    # start timer
-    start = time.perf_counter()
-    
-    # instantiate google images scraper object w/ config dict values
-    scraper = GoogleImageScraper(**config)
-    
-    # fetch and persist images to output path
-    downloaded_imgs = scraper.load_images_from_folder()
-    print(downloaded_imgs)
-    print(type(downloaded_imgs[0]))
-    print(len(downloaded_imgs))
-    
-    
-    
-    # fetch and download images to disk
-    # img_urls = scraper.fetch_image_urls("cat", 20, 1)
-    # for url in img_urls:
-    #     scraper.persist_one_image(url)
-    
-    # display results
-    default_duration = time.perf_counter() - start
-    print(f'NO RAY: {default_duration * 1000:.1f}ms')
     
