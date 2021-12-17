@@ -3,28 +3,23 @@ import os
 import sys
 import logging
 import uvicorn
-from fastapi import FastAPI, Form, File, UploadFile, HTTPException
-
-from pydantic import BaseModel, Json, Field
-from typing import Type, List, Dict
 from PIL import Image
 
+from typing import Type, List, Dict
+from fastapi import FastAPI, Form, File,UploadFile, HTTPException
+from pydantic import BaseModel, Json, Field
+
 # import your image validator classes
-from custom_validator_classes import SimilarityAnalyzer, BlackWhiteThresholdAnalyzer
-
-class Config(BaseModel):
-    threshold: float = Field(default=.1, description="The threshold")
-
-class ImageFormOut(BaseModel):
-    filename: str
-    username: str
-    results: Dict
-
-class ImageFormIn(BaseModel):
-    username: str
-    validators: List[str] = ["SimilarityAnalyzer", "BlackWhiteThresholdAnalyzer"]
-    config: Config
-    
+from objects.custom_validator_classes import (
+    SimilarityAnalyzer, BlackWhiteThresholdAnalyzer, ValidatorObjectAggregator
+)
+# import your pydantic models
+from objects.pydantic_models import (
+    Config,
+    ImageFormIn,
+    ImageFormOut
+)
+ 
 app = FastAPI()
 
 @app.post("/validate", response_model=ImageFormOut)
