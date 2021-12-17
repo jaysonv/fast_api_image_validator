@@ -52,7 +52,7 @@ class GoogleImageScraper:
                 except Exception:
                     continue
 
-            #     # extract image urls    
+                # extract image urls    
                 actual_images = self.wd.find_elements_by_css_selector('img.n3VNCb')
                 for actual_image in actual_images:
                     if actual_image.get_attribute('src') and 'http' in actual_image.get_attribute('src'):
