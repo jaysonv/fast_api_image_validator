@@ -36,7 +36,6 @@ if __name__ == "__main__":
     
     # fetch and persist images to output path
     downloaded_imgs = scraper.load_images_from_folder()
-    #print(downloaded_imgs)
     print(type(downloaded_imgs[0]))
     print(len(downloaded_imgs))
     
