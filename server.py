@@ -32,8 +32,8 @@ async def validate(upload_file: UploadFile = File(...), model: Json[ImageFormIn]
             image = Image.open(io.BytesIO(contents)).convert('RGB')
             
         # predicted_class = image_classifier.predict(image)
-        vao = ValidatorObjectAggregator(*model.validators)
-        results = vao.processAll(image)
+        aggregator = ValidatorObjectAggregator(*model.validators)
+        results = aggregator.processAll(image)
         
         return {
             "filename": upload_file.filename,
