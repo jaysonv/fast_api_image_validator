@@ -29,18 +29,16 @@ if __name__ == "__main__":
     # instantiate google images scraper object w/ config dict values
     scraper = GoogleImageScraper(**config)
     
+    # fetch and download images to disk
+    img_urls = scraper.fetch_image_urls("dog", 20, 1)
+    for url in img_urls:
+        scraper.persist_one_image(url)
+    
     # fetch and persist images to output path
     downloaded_imgs = scraper.load_images_from_folder()
     print(downloaded_imgs)
     print(type(downloaded_imgs[0]))
     print(len(downloaded_imgs))
-    
-    
-    
-    # fetch and download images to disk
-    # img_urls = scraper.fetch_image_urls("cat", 20, 1)
-    # for url in img_urls:
-    #     scraper.persist_one_image(url)
     
     # display results
     default_duration = time.perf_counter() - start
