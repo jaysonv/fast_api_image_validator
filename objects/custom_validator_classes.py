@@ -20,7 +20,6 @@ class BlackWhiteThresholdAnalyzer(ImageValidator):
     def isValidImage(self, image):
         return True
 
-
 class ValidatorObjectAggregator:
     def __init__(self, *validator_objects: List[object]) -> None:
         self.validators = [obj for obj in validator_objects]
