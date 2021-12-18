@@ -29,7 +29,7 @@ if __name__ == "__main__":
     # instantiate google images scraper object w/ config dict values
     scraper = GoogleImageScraper(**config)
     
-    # fetch and download images to disk
+    # fetch and download images to output path
     img_urls = scraper.fetch_image_urls("boeing 747", 10, 1)
     for url in img_urls:
         scraper.persist_one_image(url)
