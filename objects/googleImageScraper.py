@@ -21,7 +21,7 @@ class GoogleImageScraper:
         self.wd = webdriver.Chrome(service=self.ser, options=self.op)
         self.output_path = output_path
         
-    def load_images_from_folder(self) -> List:
+    def load_images_from_output_path(self) -> List:
         images = []
         for filename in os.listdir(self.output_path):
             img = cv2.imread(os.path.join(self.output_path,filename))
