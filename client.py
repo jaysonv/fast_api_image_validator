@@ -13,6 +13,7 @@ with open(HERE / "/home/batman/Desktop/fast_api_image_validator/downloaded_image
         "DominantColorAnalyzer"], # shows will override default
         "config": {"threshold": 0.2} # shows will override default
     }
+        
     resp = requests.post(url, files=files, data={"model": json.dumps(values)})
     print(resp.status_code)
     print(resp.json())

@@ -15,7 +15,7 @@ class ImageFormOut(BaseModel):
 
 class ImageFormIn(BaseModel):
     username: str
-    validators: List[str] = ["SimilarityAnalyzer", "BlackWhiteThresholdAnalyzer",
+    validators: List[str] = ["SimilarityAnalyzer",
     "DominantColorAnalyzer"]
     config: Config
     
