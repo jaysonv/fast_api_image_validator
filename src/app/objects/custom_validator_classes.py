@@ -11,7 +11,8 @@ from skimage import io
 
 from objects.utils import get_dominant_colors
 
-ROOT_DIR = "/home/batman/Desktop/fast_api_image_validator" # This is your Project Root
+# ROOT_DIR = "/home/batman/Desktop/fast_api_image_validator" # This is your Project Root
+ROOT_DIR = os.path.dirname(os.path.dirname(__file__))
 
 
 class ImageValidator(ABC):
