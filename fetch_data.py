@@ -34,7 +34,7 @@ if __name__ == "__main__":
     for url in img_urls:
         scraper.persist_one_image(url)
     
-    # fetch and persist images to output path
+    # fetch images from output path
     downloaded_imgs = scraper.load_images_from_folder()
     print(type(downloaded_imgs[0]))
     print(len(downloaded_imgs))
