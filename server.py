@@ -35,11 +35,12 @@ async def validate(upload_file: UploadFile = File(...), model: Json[ImageFormIn]
             aggregator = ValidatorObjectAggregator(*model.validators)
             results = aggregator.processAll(image)
             
-            return {
+            data = {
                 "filename": upload_file.filename,
                 "username" : model.username, 
                 "results" : results
             }
+            return ImageFormOut(**data)
     except Exception as error:
         logging.exception(error)
         e = sys.exc_info()[1]
