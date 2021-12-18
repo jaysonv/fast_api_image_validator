@@ -11,7 +11,9 @@ from pydantic import BaseModel, Json, Field
 
 # import your image validator classes
 from objects.custom_validator_classes import (
-    SimilarityAnalyzer, BlackWhiteThresholdAnalyzer, ValidatorObjectAggregator
+    SimilarityAnalyzer, BlackWhiteThresholdAnalyzer, 
+    DominantColorAnalyzer,
+    ValidatorObjectAggregator
 )
 # import your pydantic models
 from objects.pydantic_models import (
@@ -35,7 +37,7 @@ async def validate(upload_file: UploadFile = File(...), model: Json[ImageFormIn]
             aggregator = ValidatorObjectAggregator(*model.validators)
             results = aggregator.processAll(image)
             
-            print(f'{model.config}')
+            print(f'{model.config.threshold}')
             
             data = {
                 "filename": upload_file.filename,

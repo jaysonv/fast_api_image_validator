@@ -5,7 +5,8 @@ from typing import List, Dict
 
 
 class Config(BaseModel):
-    threshold: float = Field(default=.1, description="The threshold")
+    threshold: float = Field(default=.1, description="The dummy threshold value")
+    threshold2: float = Field(default=100, description="The second dummy threshold value")
 
 class ImageFormOut(BaseModel):
     filename: str
@@ -14,7 +15,8 @@ class ImageFormOut(BaseModel):
 
 class ImageFormIn(BaseModel):
     username: str
-    validators: List[str] = ["SimilarityAnalyzer", "BlackWhiteThresholdAnalyzer"]
+    validators: List[str] = ["SimilarityAnalyzer", "BlackWhiteThresholdAnalyzer",
+    "DominantColorAnalyzer"]
     config: Config
     
     
