@@ -102,6 +102,6 @@ class GoogleImageScraper:
                 progress.update(len(data))
             
     def __str__(self):
-        return str(self.out)
+        return str(self.output_path)
         
     

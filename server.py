@@ -35,6 +35,8 @@ async def validate(upload_file: UploadFile = File(...), model: Json[ImageFormIn]
             aggregator = ValidatorObjectAggregator(*model.validators)
             results = aggregator.processAll(image)
             
+            print(f'{model.config}')
+            
             data = {
                 "filename": upload_file.filename,
                 "username" : model.username, 
