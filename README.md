@@ -82,6 +82,5 @@ curl -X 'POST' \
 ## Example Images
 ![Example of documented route part 1](https://github.com/k-zehnder/fast_api_image_validator/blob/main/docs/route0.png)
 
-## Example Images
 ![Example of documented route part 2](https://github.com/k-zehnder/fast_api_image_validator/blob/main/docs/route2.png)
 
