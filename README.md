@@ -8,7 +8,7 @@ An image validator using FastAPI.
 git clone https://github.com/k-zehnder/fast_api_image_validator
 ```
 
-## Run local with Docker
+## Run with Docker
 ```
 cd fast_api_image_validator
 sudo docker-compose up -d --build
