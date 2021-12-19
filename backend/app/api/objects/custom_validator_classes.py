@@ -46,7 +46,6 @@ class ValidatorObjectAggregator:
 
     def processAll(self, image):
         results = {}
-        # TODO: for val_key, settings in self.validators:
         for validator_key in self.validators:
             validity_object = self.validators_dictionary[validator_key]()
             results[f"{validator_key}"] = validity_object.isValidImage(image) 

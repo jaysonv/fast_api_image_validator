@@ -44,8 +44,8 @@ import requests
 
 HERE = Path(__file__).parent.absolute()
 
-with open(HERE / "/home/batman/Desktop/fast_api_image_validator/kevin.png", "rb") as fh:
-    url = "http://localhost:8000/validate"
+with open(HERE / "/home/batman/Desktop/fast_api_image_validator/docs/route0.png", "rb") as fh:
+    url = "http://localhost:8000/api/isvalid"
     files = {"upload_file": fh}
     values = {
         "username" : "user1234", 
@@ -57,43 +57,47 @@ with open(HERE / "/home/batman/Desktop/fast_api_image_validator/kevin.png", "rb"
     print(resp.json())
 ```
 ```
-http://127.0.0.1:8000/validate
+http://127.0.0.1:8000/api/isvalid
 ```
 
 ## POST to endpoint 'http://127.0.0.1:8000/validate' using Curl
 
 ```
 curl -X 'POST' \
-  'http://127.0.0.1:8000/validate' \
+  'http://0.0.0.0:8000/api/isvalid/validate' \
   -H 'accept: application/json' \
   -H 'Content-Type: multipart/form-data' \
-  -F 'upload_file=@Screenshot from 2021-12-05 07-40-46.png;type=image/png' \
+  -F 'upload_file=@docs.png;type=image/png' \
   -F 'model={
-  "username": "t1",
+  "username": "kevin",
   "validators": [
     "SimilarityAnalyzer",
-    "BlackWhiteThresholdAnalyzer"
+    "DominantColorAnalyzer"
   ],
   "config": {
-    "threshold": 0.1
+    "threshold": 0.1,
+    "threshold2": 200
   }
 }'
 ```
 
 ## Example Response Body
 
-```
+```	
 {
-  "filename": "Screenshot from 2021-12-05 07-40-46.png",
-  "username": "t1",
+  "filename": "docs.png",
+  "username": "kevin",
   "results": {
     "SimilarityAnalyzer": true,
-    "BlackWhiteThresholdAnalyzer": true
+    "DominantColorAnalyzer": false
   }
 }
 ```
 
 
 ## Example Images
-![Example of documented route part 1](https://github.com/k-zehnder/fast_api_image_validator/blob/main/docs/route_docs1.png)
+![Example of documented route part 1](https://github.com/k-zehnder/fast_api_image_validator/blob/main/docs/route0.png)
+
+## Example Images
+![Example of documented route part 2](https://github.com/k-zehnder/fast_api_image_validator/blob/main/docs/route2.png)
 
