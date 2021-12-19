@@ -10,7 +10,6 @@ import numpy as np
 # from skimage import io
 
 
-# ROOT_DIR = "/home/batman/Desktop/fast_api_image_validator" # This is your Project Root
 ROOT_DIR = os.path.dirname(os.path.dirname(__file__))
 
 

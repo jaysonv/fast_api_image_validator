@@ -26,6 +26,9 @@ from app.api.objects.pydantic_models import (
 
 # from app.api.objects.custom_validator_classes import BlackWhiteThresholdAnalyzer
 
+ROOT_DIR = os.path.dirname(os.path.dirname(__file__))
+
+
 router = APIRouter()
 
 @router.get("/ping")
@@ -35,7 +38,8 @@ async def pong():
 @router.post("/validate", response_model=ImageFormOut)
 async def validate(upload_file: UploadFile = File(...), model: Json[ImageFormIn] = Form(...)):
     try:
-        filename = os.path.join("downloaded_images", model.username + "_" + upload_file.filename)
+        filename = os.path.join(ROOT_DIR, "downloaded_images", model.username + "_" + upload_file.filename)
+        print(f'filename: {filename}')
         with open(filename, "wb") as fh:
             contents = await upload_file.read()
             fh.write(contents)
@@ -47,12 +51,14 @@ async def validate(upload_file: UploadFile = File(...), model: Json[ImageFormIn]
             
             print(f'{model.config.threshold}')
             
-            data = {
+            results = {
                 "filename": upload_file.filename,
                 "username" : model.username, 
                 "results" : results
             }
-            return ImageFormOut(**data)
+            return ImageFormOut(**results)
+            # print(results)
+            # return results
     except Exception as error:
         logging.exception(error)
         e = sys.exc_info()[1]
