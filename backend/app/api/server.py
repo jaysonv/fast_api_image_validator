@@ -5,7 +5,7 @@ from app.api.routes import router as api_router
 
 
 def get_application():
-    app = FastAPI(title="Phresh", version="1.0.0")
+    app = FastAPI(title="ImageValidator", version="1.0.0")
 
     app.add_middleware(
         CORSMiddleware,

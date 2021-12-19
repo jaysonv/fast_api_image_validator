@@ -12,10 +12,26 @@ import requests
 
 from api.objects.googleImageScraper import GoogleImageScraper
 
+def imlist(path):
+    """
+    The function imlist returns all the names of the files in 
+    the directory path supplied as argument to the function.
+    """
+    return [os.path.join(path, f) for f in os.listdir(path)]
+
+
 if __name__ == "__main__":
     # hard code configs
+    output_path = os.path.join("api", "load_test_imgs")
+    
+    load_test_imgs_paths = imlist(output_path)
+    
+    for file in load_test_imgs_paths:
+        print(f'removing {file}')
+        os.remove(file)
+    
     config = {
-        "output_path" : "/home/batman/Desktop/fast_api_image_validator/backend/app/api/load_test_imgs",
+        "output_path" : output_path,
         "chrome_driver_path" : "/home/batman/Desktop/fast_api_image_validator/backend/app/api/chromedriver",
         "headless" : True
     }
@@ -27,7 +43,7 @@ if __name__ == "__main__":
     scraper = GoogleImageScraper(**config)
     
     # fetch and download images to output path
-    img_urls = scraper.fetch_image_urls("cat", 100, 1)
+    img_urls = scraper.fetch_image_urls("boeing", 10, 1)
     for url in img_urls:
         scraper.persist_one_image(url)
     
