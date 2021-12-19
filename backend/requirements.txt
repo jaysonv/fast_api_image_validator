@@ -1,0 +1,18 @@
+# app
+fastapi
+uvicorn
+pydantic
+email-validator
+fastapi
+uvicorn
+starlette
+pytest
+requests
+pydantic
+numpy
+opencv_python-headless
+tqdm
+fastapi
+Pillow
+selenium
+python-multipart
