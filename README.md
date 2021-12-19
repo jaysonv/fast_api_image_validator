@@ -8,29 +8,14 @@ An image validator using FastAPI.
 git clone https://github.com/k-zehnder/fast_api_image_validator
 ```
 
-## Run local
-
-### Install dependencies
-
+## Run local with Docker
 ```
-pip install -r requirements.txt
+cd fast_api_image_validator
+sudo docker-compose up -d --build
+sudo docker-compose up
 ```
-
-### Run server
-
-```
-uvicorn server:app --reload
-```
-
-### Run test (*)
-
-```
-pytest app/test.py
-```
-
 
 ## API documentation (provided by Swagger UI)
-
 ```
 http://127.0.0.1:8000/docs
 ```
