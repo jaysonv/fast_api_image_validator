@@ -57,10 +57,10 @@ with open(HERE / "/home/batman/Desktop/fast_api_image_validator/docs/route0.png"
     print(resp.json())
 ```
 ```
-http://127.0.0.1:8000/api/isvalid
+http://127.0.0.1:8000/api/isvalid/validate_image
 ```
 
-## POST to endpoint 'http://127.0.0.1:8000/validate' using Curl
+## POST to endpoint 'http://127.0.0.1:8000/api/isvalid/validate_image' using Curl
 
 ```
 curl -X 'POST' \
@@ -93,7 +93,6 @@ curl -X 'POST' \
   }
 }
 ```
-
 
 ## Example Images
 ![Example of documented route part 1](https://github.com/k-zehnder/fast_api_image_validator/blob/main/docs/route0.png)
