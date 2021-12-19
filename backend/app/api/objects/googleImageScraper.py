@@ -104,3 +104,14 @@ class GoogleImageScraper:
         return str(self.output_path)
         
     
+if __name__ == "__main__":
+    ROOT_DIR = os.path.dirname(os.path.dirname(__file__))
+    
+    chrome_driver_path = "../chromedriver"
+    output_path = "../downloaded_images"
+    
+    scraper = GoogleImageScraper(chrome_driver_path, output_path)
+    print(scraper)
+    
+    imgs = scraper.load_images_from_output_path()
+    print(len(imgs))
