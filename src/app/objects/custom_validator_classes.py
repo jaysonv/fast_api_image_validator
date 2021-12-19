@@ -7,7 +7,7 @@ from typing import List, Dict
 
 import cv2
 import numpy as np
-from skimage import io
+# from skimage import io
 
 from objects.utils import get_dominant_colors
 
@@ -34,7 +34,7 @@ class DominantColorAnalyzer(ImageValidator):
         # print(f'type image: {type(image)}')
         
         # get dominant colors
-        palette = get_dominant_colors(image)
+        #palette = get_dominant_colors(image)
         return False
 
 class ValidatorObjectAggregator:
@@ -57,15 +57,15 @@ class ValidatorObjectAggregator:
     def __str__(self):
         return str(self.validators)
     
-# if __name__ == "__main__":
-#     val_objects = ["SimilarityAnalyzer", "BlackWhiteThresholdAnalyzer", "DominantColorAnalyzer"]
-#     aggregator = ValidatorObjectAggregator(*val_objects)
-#     print(aggregator)
+if __name__ == "__main__":
+    val_objects = ["SimilarityAnalyzer", "BlackWhiteThresholdAnalyzer", "DominantColorAnalyzer"]
+    aggregator = ValidatorObjectAggregator(*val_objects)
+    print(aggregator)
     
-#     # instantiate dominant color validator
-#     dom_analyzer = DominantColorAnalyzer()
+    # instantiate dominant color validator
+    dom_analyzer = DominantColorAnalyzer()
 
-#     # specify path to image to test on
-#     file = os.path.join(ROOT_DIR, "downloaded_images", "lego.png")
-#     print(file)
-#     print(dom_analyzer.isValidImage(file))
+    # specify path to image to test on
+    file = os.path.join(ROOT_DIR, "downloaded_images", "lego.png")
+    print(file)
+    print(dom_analyzer.isValidImage(file))

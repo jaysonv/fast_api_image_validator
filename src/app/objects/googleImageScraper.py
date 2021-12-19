@@ -43,7 +43,6 @@ class GoogleImageScraper:
             thumbnail_results = self.wd.find_elements_by_css_selector("img.Q4LuWd")
             number_results = len(thumbnail_results)
 
-
             for img in thumbnail_results[results_start:number_results]:
                 # try to click every thumbnail such that we can get the real image behind it
                 try:
@@ -65,7 +64,7 @@ class GoogleImageScraper:
                     break
                 else:
                     print("Found:", len(image_urls), "image links, looking for more ...")
-                # time.sleep(30)
+                time.sleep(30)
             #     #return
                 load_more_button = self.wd.find_element_by_css_selector(".mye4qd")
                 if load_more_button:

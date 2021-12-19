@@ -1,9 +1,10 @@
 import cv2
 import numpy as np
-from skimage import io
+# from skimage import io
 
 def get_dominant_colors(image_array):
-    # convert from pillow to cv2 to play nice with skimage
+    pass
+"""    # convert from pillow to cv2 to play nice with skimage
     img = np.asarray(image_array)
     
     # calculate the mean of each chromatic channel
@@ -25,4 +26,4 @@ def get_dominant_colors(image_array):
     print(f'dominant: {dominant}')
     # return dominant [R, G, B] [179, 27, 2]
     # for lego image
-    return dominant
+    return dominant"""
