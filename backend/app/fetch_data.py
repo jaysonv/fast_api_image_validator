@@ -21,29 +21,31 @@ def imlist(path):
 
 
 if __name__ == "__main__":
-    # hard code configs
+    # assign paths
     output_path = os.path.join("api", "load_test_imgs")
+    chrome_driver_path = os.path.join("api", "chromedriver")
     
+    # remove images if exist
     load_test_imgs_paths = imlist(output_path)
-    
     for file in load_test_imgs_paths:
         print(f'removing {file}')
         os.remove(file)
     
+    # dict to instantiate GoogleImageSceaper object with
     config = {
         "output_path" : output_path,
-        "chrome_driver_path" : "/home/batman/Desktop/fast_api_image_validator/backend/app/api/chromedriver",
+        "chrome_driver_path" : chrome_driver_path,
         "headless" : True
     }
 
     # start timer
     start = time.perf_counter()
     
-    # instantiate google images scraper object w/ config dict values
+    # instantiate GoogleImageScraper
     scraper = GoogleImageScraper(**config)
     
     # fetch and download images to output path
-    img_urls = scraper.fetch_image_urls("boeing", 10, 1)
+    img_urls = scraper.fetch_image_urls("boeing", 200, 1)
     for url in img_urls:
         scraper.persist_one_image(url)
     
@@ -54,5 +56,5 @@ if __name__ == "__main__":
     
     # display results
     default_duration = time.perf_counter() - start
-    print(f'NO RAY: {default_duration * 1000:.1f}ms')
+    print(f'scraped {len(downloaded_imgs)} images in {default_duration:.1f}   seconds')
     
