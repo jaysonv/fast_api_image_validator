@@ -64,7 +64,7 @@ class GoogleImageScraper:
                     break
                 else:
                     print("Found:", len(image_urls), "image links, looking for more ...")
-                time.sleep(30)
+                # time.sleep(30)
             #     #return
                 load_more_button = self.wd.find_element_by_css_selector(".mye4qd")
                 if load_more_button:

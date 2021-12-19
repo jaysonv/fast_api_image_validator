@@ -18,16 +18,16 @@ def imlist(path):
 paths = imlist("/home/batman/Desktop/fast_api_image_validator/docs")
 
 for idx, path in enumerate(paths):
-    if idx <= 3:
-        with open(HERE / f"{path}", "rb") as fh:
-            url = "http://localhost:8000/api/isvalid/validate_image"
-            files = {"upload_file": fh}
-            values = {
-                "username" : f"user{idx}", 
-                "validators" : ["BlackWhiteThresholdAnalyzer"],
-                "config": {"threshold": 0.2}
-            }
-            resp = requests.post(url, files=files, data={"model": json.dumps(values)})
-            print(resp.status_code)
-            print(resp.json())
-            
+    # if idx <= 3:
+    with open(HERE / f"{path}", "rb") as fh:
+        url = "http://localhost:8000/api/isvalid/validate_image"
+        files = {"upload_file": fh}
+        values = {
+            "username" : f"user{idx}", 
+            "validators" : ["BlackWhiteThresholdAnalyzer"],
+            "config": {"threshold": 0.2}
+        }
+        resp = requests.post(url, files=files, data={"model": json.dumps(values)})
+        print(resp.status_code)
+        print(resp.json())
+        
