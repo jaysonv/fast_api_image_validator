@@ -4,21 +4,24 @@ import requests
 import cv2
 import os
 import time
-from imutils import paths
 
-# HERE = Path(__file__).parent.absolute()
-# print(f'HERE: {HERE}')
 
 def imlist(path):
+    """
+    The function imlist returns all the names of the files in 
+    the directory path supplied as argument to the function.
+    """
     return [os.path.join(path, f) for f in os.listdir(path)]
 
 # path to local folder with load test imgs
 paths = imlist(os.path.join("api", "load_test_imgs"))
-
-
 print(paths)
+
+# start timer
+start = time.perf_counter()
+
+counter = 0
 for idx, path in enumerate(paths):
-    # if idx <= 3:
     with open(path, "rb") as fh:
         url = "http://localhost:8000/api/isvalid/validate_image"
         files = {"upload_file": fh}
@@ -30,4 +33,9 @@ for idx, path in enumerate(paths):
         resp = requests.post(url, files=files, data={"model": json.dumps(values)})
         print(resp.status_code)
         print(resp.json())
+        counter += 1
+
+# display results
+duration = time.perf_counter() - start
+print(f'total images processed: {counter} in {duration * 1000:.1f}ms')
         
