@@ -23,7 +23,7 @@ if __name__ == "__main__":
 
     # path to folder with load test imgs
     paths = imlist(os.path.join("api", "load_test_imgs"))
-    print(paths)
+    #print(paths)
 
 
     # start timer
@@ -48,10 +48,8 @@ if __name__ == "__main__":
 
     # display results
     duration = time.perf_counter() - start
-    print(f'total images processed: {counter} in {duration:.1f}seconds')
-            
-    # print(list_of_dicts[0]["results"])
-    
+    print(f'\ntotal images processed: {counter} in {duration:.1f}seconds')
+                
     true_count = 0
     for d in list_of_dicts:
         try:
@@ -60,5 +58,5 @@ if __name__ == "__main__":
                 print(d)
                 true_count += 1
         except Exception as e:
-            print("invalid")
-    print(f"done checking.\n{true_count} are square")
+            pass
+    print(f"\ndone checking.\n{true_count} are square")

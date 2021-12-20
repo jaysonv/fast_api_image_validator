@@ -28,9 +28,15 @@ ROOT_DIR = os.path.dirname(os.path.dirname(__file__))
 
 router = APIRouter()
 
-@router.get("/ping")
+@router.get("/validators")
 async def pong():
-    return {"ping": "pong!"}
+    return {
+        "validators": [
+            "SimilarityAnalyzer",
+            "SquareAnalyzer",
+            "DominantColorAnalyzer"
+            ]
+    }
 
 @router.post("/validate_image", response_model=ImageFormOut)
 async def validate(upload_file: UploadFile = File(...), model: Json[ImageFormIn] = Form(...)):
