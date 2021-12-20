@@ -20,7 +20,7 @@ sudo docker-compose up
 http://0.0.0.0:8000/docs
 ```
 
-## POST to endpoint 'http://0.0.0.0:8000/validate' using requests module
+## POST to endpoint 'http://0.0.0.0:8000/api/isvalid/validate_image' using requests module
 
 ```
 import json
