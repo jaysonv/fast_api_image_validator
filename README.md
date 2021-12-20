@@ -33,34 +33,31 @@ with open(image_path, "rb") as fh:
     files = {"upload_file": fh}
     values = {
         "username" : "user1234", 
-        "validators" : ["BlackWhiteThresholdAnalyzer"],
+        "validators" : ["SquareAnalyzer"],
         "config": {"threshold": 0.2}
     }
     resp = requests.post(url, files=files, data={"model": json.dumps(values)})
     print(resp.status_code)
     print(resp.json())
 ```
-```
-http://0.0.0.0:8000/api/isvalid/validate_image
-```
 
 ## POST to endpoint 'http://0.0.0.0:8000/api/isvalid/validate_image' using Curl
 
 ```
 curl -X 'POST' \
-  'http://0.0.0.0:8000/api/isvalid/validate' \
+  'http://0.0.0.0:8000/api/isvalid/validate_image' \
   -H 'accept: application/json' \
   -H 'Content-Type: multipart/form-data' \
-  -F 'upload_file=@docs.png;type=image/png' \
+  -F 'upload_file=@square.jpg;type=image/jpeg' \
   -F 'model={
-  "username": "kevin",
+  "username": "test_user",
   "validators": [
-    "SimilarityAnalyzer",
+    "SquareAnalyzer",
     "DominantColorAnalyzer"
   ],
   "config": {
     "threshold": 0.1,
-    "threshold2": 200
+    "threshold2": 100
   }
 }'
 ```
@@ -69,10 +66,10 @@ curl -X 'POST' \
 
 ```	
 {
-  "filename": "docs.png",
-  "username": "kevin",
+  "filename": "square.jpg",
+  "username": "test_user",
   "results": {
-    "SimilarityAnalyzer": true,
+    "SquareAnalyzer": true,
     "DominantColorAnalyzer": false
   }
 }

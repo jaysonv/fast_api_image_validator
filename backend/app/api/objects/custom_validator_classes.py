@@ -20,10 +20,6 @@ class ImageValidator(ABC):
     def isValidImage(self, image):
         pass
 
-class SimilarityAnalyzer(ImageValidator):
-    def isValidImage(self, image):
-        return True
-    
 class SquareAnalyzer(ImageValidator):
     def isValidImage(self, image):
         return image.width == image.height
@@ -32,14 +28,12 @@ class DominantColorAnalyzer(ImageValidator):
     def isValidImage(self, image):
         dominant_color = get_dominant_color(image)
         wanted_color = "purple"
-        print(f'get color name {get_color_name(dominant_color)}')
         return get_color_name(dominant_color) == wanted_color
 
 class ValidatorObjectAggregator:
     def __init__(self, *validator_objects: List[object]) -> None:
         self.validators = [obj for obj in validator_objects]
         self.validators_dictionary = {
-            "SimilarityAnalyzer" : SimilarityAnalyzer,
             "SquareAnalyzer" : SquareAnalyzer,
             "DominantColorAnalyzer" : DominantColorAnalyzer
         }
@@ -56,7 +50,7 @@ class ValidatorObjectAggregator:
 
      
 if __name__ == "__main__":
-    val_objects = ["SimilarityAnalyzer", "DominantColorAnalyzer"]
+    val_objects = ["SquareAnalyzer", "DominantColorAnalyzer"]
     aggregator = ValidatorObjectAggregator(*val_objects)
     print(aggregator)
     

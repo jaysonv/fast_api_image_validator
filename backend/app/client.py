@@ -4,6 +4,7 @@ import requests
 import cv2
 import os
 import time
+import pprint 
 
 
 def imlist(path):
@@ -23,8 +24,6 @@ if __name__ == "__main__":
 
     # path to folder with load test imgs
     paths = imlist(os.path.join("api", "load_test_imgs"))
-    #print(paths)
-
 
     # start timer
     start = time.perf_counter()
@@ -49,14 +48,5 @@ if __name__ == "__main__":
     # display results
     duration = time.perf_counter() - start
     print(f'\ntotal images processed: {counter} in {duration:.1f}seconds')
-                
-    true_count = 0
-    for d in list_of_dicts:
-        try:
-            if d["results"]["SquareAnalyzer"] == True:
-                print("TRUE")
-                print(d)
-                true_count += 1
-        except Exception as e:
-            pass
-    print(f"\ndone checking.\n{true_count} are square")
+    # print(json.dumps(list_of_dicts, sort_keys=True, indent=4))
+    pprint.pprint(list_of_dicts)

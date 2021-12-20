@@ -1,4 +1,3 @@
-# import ray
 import os
 from abc import ABC, abstractmethod
 from typing import List, Dict
@@ -82,6 +81,7 @@ class GoogleImageScraper:
         # if path doesn't exist, make that path dir
         if not os.path.isdir(self.output_path):
             os.makedirs(self.output_path)
+            
         # download the body of response by chunk, not immediately
         response = requests.get(url, stream=True)
 

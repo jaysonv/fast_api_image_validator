@@ -11,7 +11,6 @@ from pydantic import BaseModel, Json, Field
 
 # import your image validator classes
 from app.api.objects.custom_validator_classes import (
-    SimilarityAnalyzer,
     SquareAnalyzer,
     DominantColorAnalyzer,
     ValidatorObjectAggregator
@@ -32,7 +31,6 @@ router = APIRouter()
 async def validators():
     return {
         "validators": [
-            "SimilarityAnalyzer",
             "SquareAnalyzer",
             "DominantColorAnalyzer"
             ]
@@ -50,7 +48,7 @@ async def validate_image(upload_file: UploadFile = File(...), model: Json[ImageF
             
             # predicted_class = image_classifier.predict(image, model.threshold)
             aggregator = ValidatorObjectAggregator(*model.validators)
-            results = aggregator.processAll(image) # could make this async also?
+            results = aggregator.processAll(image)
             
             output_data = {
                 "filename": upload_file.filename,
