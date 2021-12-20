@@ -48,5 +48,3 @@ if __name__ == "__main__":
     # display results
     duration = time.perf_counter() - start
     print(f'\ntotal images processed: {counter} in {duration:.1f}seconds')
-    # print(json.dumps(list_of_dicts, sort_keys=True, indent=4))
-    pprint.pprint(list_of_dicts)
