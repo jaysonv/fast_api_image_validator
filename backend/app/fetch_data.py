@@ -45,7 +45,7 @@ if __name__ == "__main__":
     scraper = GoogleImageScraper(**config)
     
     # fetch and download images to output path
-    img_urls = scraper.fetch_image_urls("boeing", 5, 1)
+    img_urls = scraper.fetch_image_urls("airbus", 100, 1)
     for url in img_urls:
         scraper.persist_one_image(url)
     

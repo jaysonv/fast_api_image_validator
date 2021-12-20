@@ -20,11 +20,11 @@ class ImageValidator(ABC):
 
 class SimilarityAnalyzer(ImageValidator):
     def isValidImage(self, image):
-        return True
+        return image.height == image.width
     
 class SquareAnalyzer(ImageValidator):
     def isValidImage(self, image):
-        return True
+        return image.width == image.height
 
 class DominantColorAnalyzer(ImageValidator):
     def isValidImage(self, image):
