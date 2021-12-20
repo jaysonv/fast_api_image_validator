@@ -27,7 +27,7 @@ import json
 from pathlib import Path
 import requests
 
-image_path = "/home/batman/Desktop/fast_api_image_validator/docs/route0.png"
+image_path = "docs/route0.png"
 with open(image_path, "rb") as fh:
     url = "http://localhost:8000/api/isvalid"
     files = {"upload_file": fh}
@@ -44,7 +44,7 @@ with open(image_path, "rb") as fh:
 http://0.0.0.0:8000/api/isvalid/validate_image
 ```
 
-## POST to endpoint 'http://127.0.0.1:8000/api/isvalid/validate_image' using Curl
+## POST to endpoint 'http://0.0.0.0:8000/api/isvalid/validate_image' using Curl
 
 ```
 curl -X 'POST' \
