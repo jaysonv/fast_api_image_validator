@@ -1,5 +1,6 @@
 # fast_api_image_validator
 ![Demo speed](https://github.com/k-zehnder/fast_api_image_validator/blob/main/docs/demo_speed.png)
+
 An image validator using FastAPI.
 
 ## Clone the project
