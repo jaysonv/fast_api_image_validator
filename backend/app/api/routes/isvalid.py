@@ -29,7 +29,7 @@ ROOT_DIR = os.path.dirname(os.path.dirname(__file__))
 router = APIRouter()
 
 @router.get("/validators")
-async def pong():
+async def validators():
     return {
         "validators": [
             "SimilarityAnalyzer",
@@ -39,9 +39,10 @@ async def pong():
     }
 
 @router.post("/validate_image", response_model=ImageFormOut)
-async def validate(upload_file: UploadFile = File(...), model: Json[ImageFormIn] = Form(...)):
+async def validate_image(upload_file: UploadFile = File(...), model: Json[ImageFormIn] = Form(...)):
     try:
-        filename = os.path.join(ROOT_DIR, "downloaded_images", model.username + "_" + upload_file.filename)
+        extention =  f"{model.username}_{upload_file.filename}"
+        filename = os.path.join(ROOT_DIR, "downloaded_images", extention)
         with open(filename, "wb") as fh:
             contents = await upload_file.read()
             fh.write(contents)
@@ -49,7 +50,7 @@ async def validate(upload_file: UploadFile = File(...), model: Json[ImageFormIn]
             
             # predicted_class = image_classifier.predict(image, model.threshold)
             aggregator = ValidatorObjectAggregator(*model.validators)
-            results = aggregator.processAll(image)
+            results = aggregator.processAll(image) # could make this async also?
             
             output_data = {
                 "filename": upload_file.filename,
