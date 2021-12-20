@@ -29,6 +29,7 @@ if __name__ == "__main__":
     # start timer
     start = time.perf_counter()
 
+    list_of_dicts = []
     counter = 0
     for idx, path in enumerate(paths):
         with open(path, "rb") as fh:
@@ -42,9 +43,22 @@ if __name__ == "__main__":
             resp = requests.post(url, files=files, data={"model": json.dumps(values)})
             print(resp.status_code)
             print(resp.json())
+            list_of_dicts.append(resp.json())
             counter += 1
 
     # display results
     duration = time.perf_counter() - start
     print(f'total images processed: {counter} in {duration:.1f}seconds')
             
+    # print(list_of_dicts[0]["results"])
+    
+    true_count = 0
+    for d in list_of_dicts:
+        try:
+            if d["results"]["SquareAnalyzer"] == True:
+                print("TRUE")
+                print(d)
+                true_count += 1
+        except Exception as e:
+            print("invalid")
+    print(f"done checking.\n{true_count} are square")
