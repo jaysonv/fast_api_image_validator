@@ -29,7 +29,7 @@ import requests
 
 image_path = "docs/route0.png"
 with open(image_path, "rb") as fh:
-    url = "http://localhost:8000/api/isvalid"
+    url = "http://localhost:8000/api/isvalid/validate_image"
     files = {"upload_file": fh}
     values = {
         "username" : "user1234", 
