@@ -17,3 +17,5 @@ Pillow
 selenium
 python-multipart
 imutils
+scikit-image
+pandas

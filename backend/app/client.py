@@ -36,7 +36,7 @@ if __name__ == "__main__":
             files = {"upload_file": fh}
             values = {
                 "username" : f"user{idx}", 
-                "validators" : ["BlackWhiteThresholdAnalyzer"],
+                "validators" : ["DominantColorAnalyzer", "SquareAnalyzer"],
                 "config": {"threshold": 0.2}
             }
             resp = requests.post(url, files=files, data={"model": json.dumps(values)})

@@ -7,7 +7,7 @@ from typing import List, Dict
 
 import cv2
 import numpy as np
-# from skimage import io
+from skimage import io
 
 
 ROOT_DIR = os.path.dirname(os.path.dirname(__file__))
@@ -22,17 +22,14 @@ class SimilarityAnalyzer(ImageValidator):
     def isValidImage(self, image):
         return True
     
-class BlackWhiteThresholdAnalyzer(ImageValidator):
+class SquareAnalyzer(ImageValidator):
     def isValidImage(self, image):
         return True
 
 class DominantColorAnalyzer(ImageValidator):
     def isValidImage(self, image):
-        # img = cv2.imread(image)
-        # print(f'type image: {type(image)}')
-        
         # get dominant colors
-        #palette = get_dominant_colors(image)
+        # palette = get_dominant_colors(image)
         return False
 
 class ValidatorObjectAggregator:
@@ -40,7 +37,7 @@ class ValidatorObjectAggregator:
         self.validators = [obj for obj in validator_objects]
         self.validators_dictionary = {
             "SimilarityAnalyzer" : SimilarityAnalyzer,
-            "BlackWhiteThresholdAnalyzer" : BlackWhiteThresholdAnalyzer,
+            "SquareAnalyzer" : SquareAnalyzer,
             "DominantColorAnalyzer" : DominantColorAnalyzer
         }
 
@@ -56,9 +53,9 @@ class ValidatorObjectAggregator:
     
     
 def get_dominant_colors(image_array):
-    pass
-"""    # convert from pillow to cv2 to play nice with skimage
+    # convert from pillow to cv2 to play nice with skimage
     img = np.asarray(image_array)
+    # img = image_array
     
     # calculate the mean of each chromatic channel
     average = img.mean(axis=0).mean(axis=0)
@@ -79,10 +76,10 @@ def get_dominant_colors(image_array):
     print(f'dominant: {dominant}')
     # return dominant [R, G, B] [179, 27, 2]
     # for lego image
-    return dominant""" 
+    return dominant 
      
 if __name__ == "__main__":
-    val_objects = ["SimilarityAnalyzer", "BlackWhiteThresholdAnalyzer", "DominantColorAnalyzer"]
+    val_objects = ["SimilarityAnalyzer", "DominantColorAnalyzer"]
     aggregator = ValidatorObjectAggregator(*val_objects)
     print(aggregator)
     

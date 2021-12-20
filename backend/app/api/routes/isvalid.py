@@ -11,8 +11,8 @@ from pydantic import BaseModel, Json, Field
 
 # import your image validator classes
 from app.api.objects.custom_validator_classes import (
-    SimilarityAnalyzer, 
-    BlackWhiteThresholdAnalyzer, 
+    SimilarityAnalyzer,
+    SquareAnalyzer,
     DominantColorAnalyzer,
     ValidatorObjectAggregator
 )
