@@ -17,19 +17,18 @@ sudo docker-compose up
 
 ## API documentation (provided by Swagger UI)
 ```
-http://127.0.0.1:8000/docs
+http://0.0.0.0:8000/docs
 ```
 
-## POST to endpoint 'http://127.0.0.1:8000/validate' using requests module
+## POST to endpoint 'http://0.0.0.0:8000/validate' using requests module
 
 ```
 import json
 from pathlib import Path
 import requests
 
-HERE = Path(__file__).parent.absolute()
-
-with open(HERE / "/home/batman/Desktop/fast_api_image_validator/docs/route0.png", "rb") as fh:
+image_path = "/home/batman/Desktop/fast_api_image_validator/docs/route0.png"
+with open(image_path, "rb") as fh:
     url = "http://localhost:8000/api/isvalid"
     files = {"upload_file": fh}
     values = {
@@ -42,7 +41,7 @@ with open(HERE / "/home/batman/Desktop/fast_api_image_validator/docs/route0.png"
     print(resp.json())
 ```
 ```
-http://127.0.0.1:8000/api/isvalid/validate_image
+http://0.0.0.0:8000/api/isvalid/validate_image
 ```
 
 ## POST to endpoint 'http://127.0.0.1:8000/api/isvalid/validate_image' using Curl
